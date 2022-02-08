@@ -23,41 +23,62 @@
      * 10. reverse the output and join them with join method
      * 11. return the output
      */
-    const input1 = "9993139655";
-    const input2 = "9993139655";
+
     function TwoSumLongestNumber(input1, input2) {
+      //   if (!input1 || !input2) {
+      //     return "Enter Proper Value";
+      //   }
+      input1 = Number(input1);
+      input2 = Number(input2);
+      //   console.log(input1, input2);
+      if (isNaN(input1) || isNaN(input2)) {
+        return "Enter Proper Value";
+      }
+      input1 = input1 + "";
+      input2 = input2 + "";
+      let length = 0;
+      if (input1.length > input2.length) {
+        length = input1.length;
+      } else {
+        length = input2.length;
+      }
       const arr1 = input1.split("").reverse();
       const arr2 = input2.split("").reverse();
-      const arr = [];
+      let str = "";
       let carry = 0;
       //   debugger;
-      for (let i = 0; i < arr1.length; i++) {
-        for (let j = i; j < arr2.length; j++) {
-          const first = parseInt(arr1[i]);
-          const second = parseInt(arr2[j]);
+      for (let i = 0; i < length; i++) {
+        for (let j = i; j < length; j++) {
+          let first = parseInt(arr1[i]);
+          let second = parseInt(arr2[j]);
+          if (isNaN(second)) {
+            second = 0;
+          }
+          if (isNaN(first)) {
+            first = 0;
+          }
           let result = first + second + carry;
           result = result + "";
           //   console.log("carry", carry);
           if (result.length > 1) {
             carry = +result[0];
             // console.log(carry);
-            arr.push(result[1] + "");
+            str = str + result[1];
             break;
           } else {
             carry = 0;
-            arr.push(result + "");
+            str = str + result;
             break;
           }
         }
       }
       if (carry > 0) {
         carry = 1;
-        arr.push(carry + "");
+        str = str + carry;
       }
-      //   console.log(arr);
-      const newOutput = arr.reverse().join("");
+      const newOutput = str.split("").reverse().join("");
       return newOutput;
     }
-    console.log(TwoSumLongestNumber(input1, input2));
+    console.log(TwoSumLongestNumber("5", "55313553"));
   </script>
 </html>
