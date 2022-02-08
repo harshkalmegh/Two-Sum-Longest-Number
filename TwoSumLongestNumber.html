@@ -23,5 +23,37 @@
      * 10. reverse the output and join them with join method
      * 11. return the output
      */
+    const input1 = "123456789";
+    const input2 = "123456789";
+    function TwoSumLongestNumber(input1, input2) {
+      const arr1 = input1.split("").reverse();
+      const arr2 = input2.split("").reverse();
+      const arr = [];
+      let carry = 0;
+      //   debugger;
+      for (let i = 0; i < arr1.length; i++) {
+        for (let j = i; j < arr2.length; j++) {
+          const first = parseInt(arr1[i]);
+          const second = parseInt(arr2[j]);
+          let result = first + second + carry;
+          result = result + "";
+          console.log("carry", carry);
+          if (result.length > 1) {
+            carry = +result[0];
+            console.log(carry);
+            arr.push(result[1] + "");
+            break;
+          } else {
+            carry = 0;
+            arr.push(result + "");
+            break;
+          }
+        }
+      }
+      console.log(arr);
+      const newOutput = arr.reverse().join("");
+      return newOutput;
+    }
+    console.log(TwoSumLongestNumber(input1, input2));
   </script>
 </html>
